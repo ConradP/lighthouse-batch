@@ -64,6 +64,7 @@ program
   .option("-v, --verbose", "enable verbose logging")
   .option("--no-report", "remove individual json reports for each site")
   .option("--print", "print the final summary to stdout")
+  .option("-d, --desktop", "run lighthouse in desktop mode")
   .parse(process.argv);
 
 execute(program);

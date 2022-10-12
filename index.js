@@ -61,11 +61,14 @@ function execute(options) {
         options.html || options.csv
           ? filePath.slice(0, -JSON_EXT.length)
           : filePath;
-      const cmd = `"${site.url}" --output json${
+      const cmd = `"${site.url}" ${
+        options.desktop ? "--preset=desktop" : ""
+      } --output json${
         htmlOut + csvOut
       } --output-path "${outputPath}" ${chromeFlags} ${customParams}`;
 
       log(`${prefix}Lighthouse analyzing '${site.url}'`);
+      log(lhScript);
       log(cmd);
       const outcome = exec(`${lhScript} ${cmd}`);
       const summary = updateSummary(filePath, site, outcome, options);
